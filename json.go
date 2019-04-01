@@ -10,3 +10,11 @@ func JSON(v interface{}) {
 	}
 	fmt.Printf("%s\n", b)
 }
+
+func Json(v interface{}) {
+	b, err := json.Marshal(v)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("%s\n", b)
+}
