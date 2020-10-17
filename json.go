@@ -20,11 +20,11 @@ func JSONString(v interface{}) string {
 }
 
 func Json(v interface{}) {
-	fmt.Printf("%s\n", jstr(b))
+	fmt.Printf("%s\n", jstr(v))
 }
 
 func JsonString(v interface{}) string {
-	return fmt.Sprintf("%s\n", jstr(b))
+	return fmt.Sprintf("%s\n", jstr(v))
 }
 
 func jstr(v interface{}) string {
