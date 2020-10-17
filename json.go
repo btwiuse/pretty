@@ -20,17 +20,31 @@ func JSONString(v interface{}) string {
 }
 
 func Json(v interface{}) {
-	b, err := json.Marshal(v)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Printf("%s\n", b)
+	fmt.Printf("%s\n", jstr(b))
 }
 
 func JsonString(v interface{}) string {
-	b, err := json.Marshal(v)
+	return fmt.Sprintf("%s\n", jstr(b))
+}
+
+func jstr(v interface{}) string {
+	var (
+		b   []byte
+		err error
+	)
+
+	switch v.(type) {
+	case *json.RawMessage:
+		b, err = v.(*json.RawMessage).MarshalJSON()
+	case json.RawMessage:
+		b, err = v.(json.RawMessage).MarshalJSON()
+	default:
+		b, err = json.Marshal(v)
+	}
+
 	if err != nil {
 		panic(err)
 	}
-	return fmt.Sprintf("%s\n", b)
+
+	return string(b)
 }
